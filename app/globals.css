@@ -1,26 +1,169 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ============================================
+   ARIMBI RESORT — Design System (Tailwind v4)
+   ============================================
+   Di Tailwind v4, konfigurasi custom colors/fonts
+   dilakukan via @theme di CSS, bukan tailwind.config.ts.
+   
+   Palette terinspirasi dari kayu Jawa, emas batik,
+   dan alam pedesaan Yogyakarta.
+   ============================================ */
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* === PRIMARY — Coklat Kayu Jawa === */
+  --color-primary-300: #A67B5B;
+  --color-primary-400: #8B5E3C;
+  --color-primary-500: #6B4226;
+  --color-primary-600: #4A2E1A;
+  --color-primary-700: #3A2213;
+
+  /* === ACCENT — Emas Jawa / Batik Gold === */
+  --color-accent-300: #D4B65A;
+  --color-accent-400: #C9A84C;
+  --color-accent-500: #A67C2E;
+  --color-accent-600: #8A6524;
+
+  /* === NEUTRAL — Krem Alami === */
+  --color-neutral-50: #FAF7F0;
+  --color-neutral-100: #F5EDD8;
+  --color-neutral-200: #EDE0C4;
+  --color-neutral-300: #D4C5A0;
+  --color-neutral-400: #B8A882;
+  --color-neutral-500: #968762;
+
+  /* === BACKGROUND & TEXT === */
+  --color-background: #FAF7F0;
+  --color-foreground: #2C1810;
+  --color-foreground-muted: #5C4333;
+
+  /* === FONTS === */
+  --font-display: var(--font-playfair), "Playfair Display", Georgia, serif;
+  --font-body: var(--font-source-serif), "Source Serif 4", Georgia, serif;
+
+  /* === SHADOWS (warm tint) === */
+  --shadow-warm-sm: 0 1px 3px rgba(44, 24, 16, 0.08);
+  --shadow-warm-md: 0 4px 12px rgba(44, 24, 16, 0.1);
+  --shadow-warm-lg: 0 8px 30px rgba(44, 24, 16, 0.12);
+  --shadow-warm-xl: 0 16px 50px rgba(44, 24, 16, 0.15);
+
+  /* === BORDER RADIUS === */
+  --radius-ornament: 2px;
+
+  /* === ANIMATION TIMING === */
+  --ease-elegant: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ============================================
+   BASE STYLES
+   ============================================ */
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-body);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* === Headings — Playfair Display === */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-foreground);
+}
+
+/* ============================================
+   JAVANESE ORNAMENT UTILITIES
+   ============================================ */
+
+/* Garis ornamen khas Jawa — border bawah dekoratif */
+.ornament-border {
+  position: relative;
+}
+
+.ornament-border::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  margin-top: 0.75rem;
+  background: linear-gradient(
+    90deg,
+    var(--color-accent-400),
+    var(--color-primary-400),
+    var(--color-accent-400)
+  );
+  border-radius: 2px;
+}
+
+.ornament-border-center::after {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Divider ornamen Jawa */
+.javanese-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.javanese-divider::before,
+.javanese-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-accent-400),
+    transparent
+  );
+}
+
+/* ============================================
+   SCROLLBAR CUSTOM (warm theme)
+   ============================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-neutral-100);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-neutral-300);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-300);
+}
+
+/* ============================================
+   SELECTION COLOR
+   ============================================ */
+
+::selection {
+  background: var(--color-accent-400);
+  color: var(--color-neutral-50);
+}
+
+/* ============================================
+   SMOOTH FOCUS STYLES
+   ============================================ */
+
+*:focus-visible {
+  outline: 2px solid var(--color-accent-400);
+  outline-offset: 2px;
+  border-radius: 2px;
 }
