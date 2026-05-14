@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 
 export default function HeroSection() {
@@ -10,11 +11,12 @@ export default function HeroSection() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
       {/* === BACKGROUND IMAGE === */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: "url('/villa-hero.jpg')",
-        }}
+      <Image
+        src="/villa-hero.jpg"
+        alt="Arimbi Resort — Villa dengan pemandangan alam Yogyakarta"
+        fill
+        className="object-cover object-center"
+        priority
       />
 
       {/* === GRADIENT OVERLAY === */}
